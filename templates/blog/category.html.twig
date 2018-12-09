@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% for article in articles %}
+        {{ article.siteTitle }}
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+    {#{{ dump(articles) }}#}
+
+    <section class="articles">
+
+    <h1>Liste des articles de la catégorie {{ title }}</h1>
+
+        {% for article in articles %}
+
+            <article>
+                <h5>{{ article.title }}</h5>
+                <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la catégorie {{ article.category.title }}</div>
+                <div class="content">
+                    <img src="{{ article.image }}" alt="">
+                    {{ article.content | raw }}
+
+                </div>
+            </article>
+
+        {% endfor %}
+
+
+    {#</section>#}
+
+{% endblock %}
